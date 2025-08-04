@@ -1,0 +1,44 @@
+<mat-card class="table-card">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 summary-table" *ngIf="dataSource.length > 0">
+  
+      <!-- Sampling Time -->
+      <ng-container matColumnDef="samplingTime">
+        <th mat-header-cell *matHeaderCellDef> Sampling Time </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.samplingTime | date: 'dd-MM-yyyy hh:mm:ss a' }}
+        </td>
+      </ng-container>
+  
+      <!-- Project Name -->
+      <ng-container matColumnDef="projectName">
+        <th mat-header-cell *matHeaderCellDef> Project Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.projectName }} </td>
+      </ng-container>
+  
+      <!-- Construction Count -->
+      <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef> Construction Count </th>
+        <td mat-cell *matCellDef="let element"> {{ element.count }} </td>
+      </ng-container>
+  
+      <!-- Completed -->
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef> Is Construction Completed </th>
+        <td mat-cell *matCellDef="let element"> {{ element.completed }} </td>
+      </ng-container>
+  
+      <!-- Length -->
+      <ng-container matColumnDef="length">
+        <th mat-header-cell *matHeaderCellDef> Length of the road </th>
+        <td mat-cell *matCellDef="let element"> {{ element.length }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <div *ngIf="dataSource.length === 0" class="no-data">
+      No data available.
+    </div>
+  </mat-card>
+  

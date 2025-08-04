@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="date-list">
+      <ul>
+        <li 
+          *ngFor="let sampling of allData?.datas" 
+          (click)="selectSampling(sampling)" 
+          [class.selected]="sampling === selectedSampling">
+          {{ sampling.samplingTime | date:'dd-MM-yyyy HH:mm:ss a' }}
+        </li>
+      </ul>
+    </div>
+  
+    <div class="details-box" *ngIf="selectedSampling">
+      <form>
+        <div class="form-field" *ngFor="let property of selectedSampling.properties">
+          <label>{{ property.label }}:</label>
+          <ng-container [ngSwitch]="property.type">
+  
+            <!-- Text -->
+            <input
+              *ngSwitchCase="'text'"
+              type="text"
+              [(ngModel)]="property.value"
+              name="{{ property.label }}"
+            />
+  
+            <!-- Number -->
+            <div *ngSwitchCase="'number'" class="input-with-unit">
+              <input
+                type="number"
+                [(ngModel)]="property.value"
+                name="{{ property.label }}"
+                [step]="property.step || 1"
+              />
+              <span
+                *ngIf="property.label === 'Length of the road'"
+                class="unit"
+              >KM</span>
+            </div>
+  
+            <!-- Checkbox -->
+            <input
+              *ngSwitchCase="'checkbox'"
+              type="checkbox"
+              [(ngModel)]="property.value"
+              name="{{ property.label }}"
+            />
+  
+          </ng-container>
+        </div>
+  
+        <button type="button" (click)="onSave()">Save</button>
+      </form>
+    </div>
+  </div>
+  

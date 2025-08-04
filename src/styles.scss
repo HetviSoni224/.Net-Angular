@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+/* Using prebuilt Azure Blue theme */
+@import '@angular/material/prebuilt-themes/azure-blue.css';
+
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+tr, td {
+  border: 1px solid black; /* Ensures bottom row has a border */
+}
+
+table, th, td {
+  border: 1px solid black;
+}
